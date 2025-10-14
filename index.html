@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Womb to Worship - Discipleship Curriculum</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#2e6b4d">
+
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6a89cc;
+            --secondary: #4a69bd;
+            --accent: #1e3799;
+            --light: #f8f9fa;
+            --dark: #2c3e50;
+            --success: #78e08f;
+            --warning: #f6b93b;
+            --danger: #e55039;
+            --radius: 15px;
+            --shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Header Styles */
+        .header {
+            text-align: center;
+            padding: 60px 20px 40px;
+        }
+        
+        .logo {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            animation: float 3s ease-in-out infinite;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.4rem;
+            opacity: 0.9;
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+        
+        /* Hero Section */
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+            margin-bottom: 60px;
+        }
+        
+        .hero-content {
+            padding: 20px;
+        }
+        
+        .hero-title {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+        
+        .hero-description {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+        
+        .hero-image {
+            text-align: center;
+        }
+        
+        .hero-img {
+            max-width: 100%;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            animation: float 4s ease-in-out infinite;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 10rem;
+        }
+        
+        /* Features Section */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .feature-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: var(--radius);
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .feature-title {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .feature-description {
+            opacity: 0.9;
+            line-height: 1.5;
+        }
+        
+        /* How It Works */
+        .how-it-works {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: var(--radius);
+            padding: 50px;
+            margin-bottom: 60px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .section-title {
+            font-size: 2.2rem;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .step {
+            text-align: center;
+        }
+        
+        .step-number {
+            background: var(--primary);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0 auto 20px;
+        }
+        
+        .step-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .step-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .step-description {
+            opacity: 0.9;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            padding: 60px 20px;
+        }
+        
+        .cta-title {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .cta-description {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn-primary {
+            background: white;
+            color: var(--primary);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+        
+        .btn-secondary:hover {
+            background: white;
+            color: var(--primary);
+        }
+        
+        .btn-icon {
+            font-size: 1.2rem;
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            margin-top: 60px;
+        }
+        
+        .footer-text {
+            opacity: 0.8;
+            margin-bottom: 10px;
+        }
+        
+        /* Animations */
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+        
+        .fade-in {
+            animation: fadeIn 1s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+            
+            .how-it-works {
+                padding: 30px 20px;
+            }
+            
+            .hero-img {
+                font-size: 8rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .title {
+                font-size: 2rem;
+            }
+            
+            .subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .hero-title {
+                font-size: 1.8rem;
+            }
+            
+            .features {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-img {
+                font-size: 6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header fade-in">
+            <div class="logo">
+                <i class="fas fa-baby"></i>
+                <i class="fas fa-heart"></i>
+            </div>
+            <h1 class="title">Womb to Worship</h1>
+            <p class="subtitle">Discipleship Curriculum: Pregnancy to Age 2</p>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h2 class="hero-title">Nurturing Your Child's Spiritual Journey From the Very Beginning</h2>
+                <p class="hero-description">
+                    Transform your pregnancy and early parenting journey into a sacred experience. 
+                    Our biblically-based curriculum helps you create a God-centered environment 
+                    that shapes your child's spiritual foundation even before birth.
+                </p>
+                <div class="cta-buttons">
+                    <a href="login.html" class="btn btn-primary">
+                        <i class="fas fa-rocket btn-icon"></i>
+                        Start Your Journey
+                    </a>
+                    <a href="#how-it-works" class="btn btn-secondary">
+                        <i class="fas fa-book btn-icon"></i>
+                        Learn More
+                    </a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="hero-img">
+                    <i class="fas fa-book-open"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features">
+            <div class="feature-card fade-in">
+                <div class="feature-icon">
+                    <i class="fas fa-baby"></i>
+                </div>
+                <h3 class="feature-title">Prenatal Discipleship</h3>
+                <p class="feature-description">
+                    Connect with your unborn child through Scripture, prayer, and worship. 
+                    Create a spiritual atmosphere that nurtures their development.
+                </p>
+            </div>
+            
+            <div class="feature-card fade-in">
+                <div class="feature-icon">
+                    <i class="fas fa-pray"></i>
+                </div>
+                <h3 class="feature-title">Monthly Guidance</h3>
+                <p class="feature-description">
+                    Structured monthly sessions with biblical teachings, activities, 
+                    and practical exercises for each stage of pregnancy and early childhood.
+                </p>
+            </div>
+            
+            <div class="feature-card fade-in">
+                <div class="feature-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3 class="feature-title">Family-Centered</h3>
+                <p class="feature-description">
+                    Engage the whole family in the spiritual journey. Track progress, 
+                    share experiences, and grow together in faith.
+                </p>
+            </div>
+        </section>
+
+        <!-- How It Works -->
+        <section id="how-it-works" class="how-it-works fade-in">
+            <h2 class="section-title">How It Works</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3 class="step-title">Create Account</h3>
+                    <p class="step-description">Sign up and set up your family profile</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3 class="step-title">Follow Monthly Curriculum</h3>
+                    <p class="step-description">Engage with biblically-based sessions and activities</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3 class="step-title">Track Progress</h3>
+                    <p class="step-description">Monitor your spiritual journey and growth</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3 class="step-title">Grow Together</h3>
+                    <p class="step-description">Build a strong spiritual foundation for your family</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Curriculum Overview -->
+        <section class="how-it-works fade-in">
+            <h2 class="section-title">What You'll Experience</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-icon">
+                        <i class="fas fa-baby"></i>
+                    </div>
+                    <h3 class="step-title">Month 1-3</h3>
+                    <p class="step-description">Wonderfully Made & God's Design</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3 class="step-title">Month 4-6</h3>
+                    <p class="step-description">Joy, Worship & Father's Role</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-icon">
+                        <i class="fas fa-hands-praying"></i>
+                    </div>
+                    <h3 class="step-title">Month 7-9</h3>
+                    <p class="step-description">Faith, Purpose & Dedication</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3 class="step-title">Age 0-2</h3>
+                    <p class="step-description">Early Discipleship & Spiritual Growth</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final CTA -->
+        <section class="cta-section fade-in">
+            <h2 class="cta-title">Ready to Begin Your Sacred Journey?</h2>
+            <p class="cta-description">
+                Join thousands of families who are transforming their parenting journey 
+                into a beautiful spiritual experience. Start building your child's 
+                godly foundation today.
+            </p>
+            <div class="cta-buttons">
+                <a href="login.html" class="btn btn-primary">
+                    <i class="fas fa-baby btn-icon"></i>
+                    Start Free Today
+                </a>
+                <a href="login.html" class="btn btn-secondary">
+                    <i class="fas fa-users btn-icon"></i>
+                    Create Family Account
+                </a>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p class="footer-text">© 2024 Womb to Worship. All rights reserved.</p>
+            <p class="footer-text">Building Generations of Faith, One Family at a Time</p>
+        </footer>
+    </div>
+
+    <script>
+        // Add scroll animations
+        document.addEventListener('DOMContentLoaded', function() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            const fadeInOnScroll = () => {
+                fadeElements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const elementVisible = 150;
+                    
+                    if (elementTop < window.innerHeight - elementVisible) {
+                        element.style.opacity = '1';
+                        element.style.transform = 'translateY(0)';
+                    }
+                });
+            };
+            
+            // Set initial state
+            fadeElements.forEach(element => {
+                element.style.opacity = '0';
+                element.style.transform = 'translateY(20px)';
+                element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            });
+            
+            // Check on load
+            fadeInOnScroll();
+            
+            // Check on scroll
+            window.addEventListener('scroll', fadeInOnScroll);
+            
+            // Smooth scroll for learn more button
+            document.querySelector('a[href="#how-it-works"]').addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector('#how-it-works').scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+    <script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('service-worker.js')
+  .then(() => console.log("Service Worker registered"))
+  .catch(err => console.log("Service Worker failed:", err));
+}
+</script>
+
+</body>
+</html>

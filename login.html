@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Womb to Worship</title>
+    <style>
+        :root {
+            --primary: #6a89cc;
+            --secondary: #4a69bd;
+            --accent: #1e3799;
+            --light: #f8f9fa;
+            --dark: #2c3e50;
+            --success: #78e08f;
+            --warning: #f6b93b;
+            --danger: #e55039;
+            --radius: 15px;
+            --shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .auth-container {
+            background: white;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            width: 100%;
+            max-width: 450px;
+            animation: slideUp 0.6s ease;
+        }
+        
+        .auth-header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+        
+        .auth-logo {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+        
+        .auth-title {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .auth-subtitle {
+            opacity: 0.9;
+            font-size: 1rem;
+        }
+        
+        .auth-body {
+            padding: 40px 30px;
+        }
+        
+        .auth-tabs {
+            display: flex;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #eee;
+        }
+        
+        .auth-tab {
+            flex: 1;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .auth-tab.active {
+            border-bottom: 3px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .auth-form {
+            display: none;
+        }
+        
+        .auth-form.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark);
+        }
+        
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #eee;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 15px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+        }
+        
+        .back-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .back-link a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .back-link a:hover {
+            text-decoration: underline;
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .auth-container {
+                max-width: 100%;
+            }
+            
+            .auth-header {
+                padding: 30px 20px;
+            }
+            
+            .auth-body {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-header">
+            <div class="auth-logo">👶💝</div>
+            <h1 class="auth-title">Womb to Worship</h1>
+            <p class="auth-subtitle">Continue Your Spiritual Journey</p>
+        </div>
+        
+        <div class="auth-body">
+            <div class="auth-tabs">
+                <div class="auth-tab active" data-form="login">Login</div>
+                <div class="auth-tab" data-form="register">Register</div>
+            </div>
+            
+            <div id="loginForm" class="auth-form active">
+                <div class="form-group">
+                    <label for="loginEmail">Email</label>
+                    <input type="email" id="loginEmail" placeholder="Enter your email">
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" placeholder="Enter your password">
+                </div>
+                <button class="btn btn-primary" onclick="login()">
+                    <span>🔐</span> Login to Continue
+                </button>
+            </div>
+            
+            <div id="registerForm" class="auth-form">
+                <div class="form-group">
+                    <label for="regName">Full Name</label>
+                    <input type="text" id="regName" placeholder="Enter your full name">
+                </div>
+                <div class="form-group">
+                    <label for="regEmail">Email</label>
+                    <input type="email" id="regEmail" placeholder="Enter your email">
+                </div>
+                <div class="form-group">
+                    <label for="regPassword">Password</label>
+                    <input type="password" id="regPassword" placeholder="Create a password">
+                </div>
+                <div class="form-group">
+                    <label for="regRole">I am a:</label>
+                    <select id="regRole">
+                        <option value="mother">Expectant Mother</option>
+                        <option value="father">Expectant Father</option>
+                        <option value="couple">Couple</option>
+                        <option value="support">Support Person/Family Member</option>
+                    </select>
+                </div>
+                <button class="btn btn-primary" onclick="register()">
+                    <span>🌟</span> Create Account
+                </button>
+            </div>
+            
+            <div class="back-link">
+                <a href="index.html">← Back to Home</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Tab functionality
+        document.querySelectorAll('.auth-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs and forms
+                document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.auth-form').forEach(f => f.classList.remove('active'));
+                
+                // Add active class to clicked tab and corresponding form
+                tab.classList.add('active');
+                const formId = tab.getAttribute('data-form') + 'Form';
+                document.getElementById(formId).classList.add('active');
+            });
+        });
+
+        function register() {
+            const name = document.getElementById('regName').value;
+            const email = document.getElementById('regEmail').value;
+            const password = document.getElementById('regPassword').value;
+            const role = document.getElementById('regRole').value;
+
+            if (!name || !email || !password) {
+                alert('Please fill in all fields');
+                return;
+            }
+
+            // Get existing users or initialize empty array
+            const users = JSON.parse(localStorage.getItem('wtw-users')) || [];
+            
+            // Check if email already exists
+            if (users.find(user => user.email === email)) {
+                alert('Email already registered');
+                return;
+            }
+
+            // Create new user
+            const newUser = {
+                id: Date.now().toString(),
+                name: name,
+                email: email,
+                password: password,
+                role: role,
+                createdAt: new Date().toISOString(),
+                familyMembers: [
+                    {
+                        id: Date.now().toString() + '-1',
+                        name: name,
+                        role: role,
+                        isPrimary: true
+                    }
+                ]
+            };
+
+            // Save user
+            users.push(newUser);
+            localStorage.setItem('wtw-users', JSON.stringify(users));
+            
+            // Log in the new user
+            localStorage.setItem('wtw-current-user', JSON.stringify(newUser));
+            
+            // Redirect to app page
+            window.location.href = 'app.html';
+        }
+
+        function login() {
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+
+            if (!email || !password) {
+                alert('Please enter email and password');
+                return;
+            }
+
+            const users = JSON.parse(localStorage.getItem('wtw-users')) || [];
+            const user = users.find(u => u.email === email && u.password === password);
+
+            if (user) {
+                localStorage.setItem('wtw-current-user', JSON.stringify(user));
+                window.location.href = 'app.html';
+            } else {
+                alert('Invalid email or password');
+            }
+        }
+    </script>
+</body>
+</html>
